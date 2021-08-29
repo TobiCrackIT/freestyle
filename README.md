@@ -1,8 +1,6 @@
 # freestyle
 
-This project is a starting point for a Flutter application. It uses the Hero widget to animate a sports-clothing app.
-
-## Getting Started
+## Flutter Portfolio Tracker App with Notion API
 
 A few resources to get you started if this is your first Flutter project:
 

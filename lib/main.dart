@@ -1,9 +1,10 @@
+import 'package:animation_2/views/portfolio_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'constants.dart';
-
-void main() {
+void main() async{
+  await dotenv.load(fileName: '.env');
   runApp(MyApp());
 }
 
@@ -12,19 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Using Notion API',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.all(defaultPadding * 0.75),
-            shape: StadiumBorder(),
-            backgroundColor: primaryColor,
-          ),
-        ),
       ),
-      home: null,
+      home: PortfolioScreen(),
     );
   }
 }
