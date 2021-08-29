@@ -1,10 +1,8 @@
-# animation
-
-This project shows the power of the Hero widget.
-
-## Getting Started
+# freestyle
 
 This project is a starting point for a Flutter application. It uses the Hero widget to animate a sports-clothing app.
+
+## Getting Started
 
 A few resources to get you started if this is your first Flutter project:
 
