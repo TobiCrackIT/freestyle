@@ -51,6 +51,7 @@ class PortfolioChart extends StatelessWidget {
             Wrap(
               spacing: 8.0,
               runSpacing: 8.0,
+              alignment: WrapAlignment.center,
               children: portfolio.keys
                   .map((e) => _Indicator(color: getCategoryColor(e), text: e))
                   .toList(),

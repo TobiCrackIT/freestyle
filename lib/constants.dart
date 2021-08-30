@@ -25,3 +25,22 @@ Color getCategoryColor(String category) {
       return Colors.orange[400]!;
   }
 }
+
+IconData getCategoryIcon(String category) {
+  switch (category) {
+    case 'Crypto':
+      return Icons.camera;
+    case 'Stocks':
+      return Icons.trending_up_rounded;
+    case 'Investment':
+      return Icons.animation;
+    case 'Savings':
+      return Icons.category;
+    case 'Bank':
+      return Icons.home_work_outlined;
+    case 'Miscellaneous':
+      return Icons.add_moderator;
+    default:
+      return Icons.account_balance_sharp;
+  }
+}

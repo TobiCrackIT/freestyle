@@ -46,30 +46,60 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                            width: 2.0,
-                            color: getCategoryColor(item.category),
-                          ),
+
                           boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               offset: Offset(0, 2),
-                              blurRadius: 6.0,
+                              blurRadius: 2.0,
                             ),
                           ],
                         ),
-                        child: ListTile(
-                          title: Text(item.name),
-                          subtitle: Text(
-                            '${item.category} • ${DateFormat.yMd().format(item.date)}',
-                          ),
-                          trailing: Text(
-                            '\$${item.amount.toStringAsFixed(2)}',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black26),
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 60,width: 60,
+                              decoration: BoxDecoration(
+                                color: getCategoryColor(item.category),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Center(
+                                child: Icon(getCategoryIcon(item.category),color: Colors.white,),
+                              ),
+                            ),
+                            SizedBox(width: 10,),
+                            Expanded(child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(item.name,style: TextStyle(fontSize: 16),),
+                                    Text(
+                                      '${item.category} • ${DateFormat.yMd().format(item.date)}',
+                                      style: TextStyle(color: Colors.grey),
+                                    )
+
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Text(
+                                    '\$${item.amount.toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black45),
+                                  ),
+                                )
+
+                              ],
+                            )),
+                          ],
+
                         ),
                       );
                     });
