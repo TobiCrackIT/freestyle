@@ -8,9 +8,10 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         leading: Padding(
-          padding: EdgeInsets.only(left: 30, right: 10),
+          padding: EdgeInsets.only(left: 30, right: 4),
           child: Image.asset(
-            'assets/images/logo',
+            'assets/images/logo.png',
+            fit: BoxFit.contain,
           ),
         ),
         title: Row(
@@ -45,6 +46,7 @@ class Home extends StatelessWidget {
             onPressed: () {},
             icon: Icon(
               Icons.mic,
+              color: Color(0xffAAAAAA),
             ),
           ),
           SizedBox(
@@ -57,35 +59,41 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+
             SizedBox(
               height: 20,
             ),
-            RawMaterialButton(
-              hoverColor: Colors.transparent,
-              elevation: 0.0,
-              focusElevation: 0.0,
-              hoverElevation: 0.0,
-              fillColor: Color(
-                0xffEFEFEF,
-              ),
-              highlightElevation: 0.0,
-              animationDuration: Duration.zero,
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              constraints:
-                  const BoxConstraints(minWidth: 72.0, minHeight: 36.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              onPressed: () {},
-              child: Center(
-                child: Text(
-                  'Connect',
-                  style: const TextStyle(
-                    color: Color(0xff666666),
-                    fontSize: 12,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RawMaterialButton(
+                  hoverColor: Colors.transparent,
+                  elevation: 0.0,
+                  focusElevation: 0.0,
+                  hoverElevation: 0.0,
+                  fillColor: Color(
+                    0xffEFEFEF,
+                  ),
+                  highlightElevation: 0.0,
+                  animationDuration: Duration.zero,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  constraints:
+                      const BoxConstraints(maxWidth: 80.0, minHeight: 36.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  onPressed: () {},
+                  child: Center(
+                    child: Text(
+                      'Connect',
+                      style: const TextStyle(
+                        color: Color(0xff666666),
+                        fontSize: 12,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             )
           ],
         ),
