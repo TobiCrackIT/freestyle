@@ -41,11 +41,13 @@ class _ExpandedInfoScreenState extends State<ExpandedInfoScreen> {
         centerTitle: true,
         backgroundColor: ArborColors.green,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ExpandedInfoPage(
-          index: widget.index,
-          wallet: widget.wallet,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ExpandedInfoPage(
+            index: widget.index,
+            wallet: widget.wallet,
+          ),
         ),
       ),
     );

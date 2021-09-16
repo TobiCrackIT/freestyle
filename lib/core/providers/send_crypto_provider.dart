@@ -5,45 +5,57 @@ import 'package:arbor/core/enums/status.dart';
 import 'package:arbor/core/utils/regex.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class SendCryptoProvider extends ChangeNotifier {
   Status sendCryptoStatus = Status.IDLE;
 
   Status _walletBalanceStatus = Status.IDLE;
+
   Status get walletBalanceStatus => _walletBalanceStatus;
 
   final walletService = WalletService();
 
   String _appBarTitle = '';
+
   String get appBarTitle => _appBarTitle;
 
   String _receiverAddress = '';
+
   String get receiverAddress => _receiverAddress;
 
+  bool scannedData = false;
+
   String _errorMessage = '';
+
   String get errorMessage => _errorMessage;
 
   String _addressErrorMessage = '';
+
   String get addressErrorMessage => _addressErrorMessage;
 
   var transactionResponse;
-  int forkPrecision=0;
-  String forkName='';
-  String forkTicker='';
-  String privateKey='';
-  String currentUserAddress='';
+  int forkPrecision = 0;
+  String forkName = '';
+  String forkTicker = '';
+  String privateKey = '';
+  String currentUserAddress = '';
   int _walletBalance = 0;
+
   int get walletBalance => _walletBalance;
 
   String _transactionValue = '0';
+
   String get transactionValue => _transactionValue;
 
   bool get enableButton => _validAddress && double.parse(_transactionValue) > 0;
 
   double get convertedBalance => _walletBalance / chiaPrecision;
+
   String get readableBalance => convertedBalance.toStringAsFixed(forkPrecision);
 
   double _amount = 0;
+
   double get amount => _amount;
 
   bool _validAddress = false;
@@ -96,7 +108,10 @@ class SendCryptoProvider extends ChangeNotifier {
     }
 
     if (_transactionValue.contains('.') &&
-        _transactionValue.split('.').last.length ==
+        _transactionValue
+            .split('.')
+            .last
+            .length ==
             forkPrecision) {
       return;
     }
@@ -106,8 +121,8 @@ class SendCryptoProvider extends ChangeNotifier {
   }
 
   deleteCharacter() {
-    if (_transactionValue == '0') {
-    } else if (_transactionValue != '0' && _transactionValue.length == 1) {
+    if (_transactionValue == '0') {} else
+    if (_transactionValue != '0' && _transactionValue.length == 1) {
       _transactionValue = '0';
     } else {
       _transactionValue = removeLastCharacter(_transactionValue);
@@ -120,9 +135,7 @@ class SendCryptoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  setReceiverAddress(
-    String value,
-  ) {
+  setReceiverAddress(String value,) {
     _receiverAddress = value;
     if (value.length >= 1) {
       bool addressIsValid = validAddress(value);
@@ -182,7 +195,7 @@ class SendCryptoProvider extends ChangeNotifier {
     notifyListeners();
     try {
       _walletBalance =
-          await walletService.fetchWalletBalance(currentUserAddress);
+      await walletService.fetchWalletBalance(currentUserAddress);
       _walletBalanceStatus = Status.SUCCESS;
       notifyListeners();
     } on Exception catch (e) {
@@ -218,4 +231,14 @@ class SendCryptoProvider extends ChangeNotifier {
     }
     return str;
   }
+
+  void onAddressQRCreated(QRViewController controller) {
+    controller.scannedDataStream.listen((scanData) {
+      controller.pauseCamera();
+      _receiverAddress = scanData.code;
+      scannedData = true;
+      notifyListeners();
+    });
+  }
+
 }

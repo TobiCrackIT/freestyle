@@ -23,7 +23,7 @@ class InfoScreen extends StatefulWidget {
 
 class _InfoScreenState extends State<InfoScreen> {
   late final Box walletBox;
-  
+
 
   // Pull to refresh wallet data
   Future<void> _reloadWalletBalances() async {
@@ -32,7 +32,7 @@ class _InfoScreenState extends State<InfoScreen> {
     for (int index = 0; index < walletBox.length; index++) {
       Wallet existingWallet = walletBox.getAt(index);
       int newBalance =
-          await walletService.fetchWalletBalance(existingWallet.address);
+      await walletService.fetchWalletBalance(existingWallet.address);
 
       Wallet newWallet = Wallet(
         name: existingWallet.name,
@@ -104,10 +104,10 @@ class _InfoScreenState extends State<InfoScreen> {
           backgroundColor: ArborColors.green,
           appBar: AppBar(
             title: Text(
-                'Arbor Wallet',
-                style: TextStyle(
-                  color: ArborColors.white,
-                ),
+              'Arbor Wallet',
+              style: TextStyle(
+                color: ArborColors.white,
+              ),
             ),
             centerTitle: true,
             backgroundColor: ArborColors.green,
@@ -129,17 +129,19 @@ class _InfoScreenState extends State<InfoScreen> {
                 if (box.isEmpty) {
                   return Center(
                     child: Text(
-                        'Tap + to create a new wallet.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: ArborColors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20,
-                        ),
+                      'Tap + to create a new wallet.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: ArborColors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                      ),
                     ),
                   );
                 } else {
                   return ListView.builder(
+                    padding: const EdgeInsets.only(
+                        bottom: kFloatingActionButtonMargin + 60),
                     itemCount: box.length,
                     itemBuilder: (context, index) {
                       var currentBox = box;
@@ -177,34 +179,34 @@ class _InfoScreenState extends State<InfoScreen> {
                                   ),
                                 ),
                                 title: Text(
-                                    // '${walletData.fork.name} (${walletData.name})'
-                                    '${walletData.fork.name}',
-                                    style: TextStyle(
-                                      color: ArborColors.white,
-                                    ),
+                                  // '${walletData.fork.name} (${walletData.name})'
+                                  '${walletData.fork.name}',
+                                  style: TextStyle(
+                                    color: ArborColors.white,
+                                  ),
                                 ),
                                 subtitle:
-                                    Text(
-                                      walletData.fork.ticker.toUpperCase(),
-                                      style: TextStyle(
-                                        color: ArborColors.white70,
-                                      ),
-                                    ),
+                                Text(
+                                  walletData.fork.ticker.toUpperCase(),
+                                  style: TextStyle(
+                                    color: ArborColors.white70,
+                                  ),
+                                ),
                                 trailing: PopupMenuButton(
                                   itemBuilder: (context) {
                                     return [
                                       PopupMenuItem(
-                                        value: 'delete',
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.delete,
-                                              color: Colors.red,
-                                            ),
-                                            SizedBox(width: 10,),
-                                            Text('Delete'),
-                                          ],
-                                        )
+                                          value: 'delete',
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                              ),
+                                              SizedBox(width: 10,),
+                                              Text('Delete'),
+                                            ],
+                                          )
                                       )
                                     ];
                                   },
@@ -218,17 +220,17 @@ class _InfoScreenState extends State<InfoScreen> {
                                 title: FittedBox(
                                     fit: BoxFit.contain,
                                     child:
-                                        Text(
-                                          walletData.balanceForDisplay(),
-                                          style: TextStyle(
-                                            color: ArborColors.white,
-                                          ),
-                                        )),
+                                    Text(
+                                      walletData.balanceForDisplay(),
+                                      style: TextStyle(
+                                        color: ArborColors.white,
+                                      ),
+                                    )),
                                 subtitle: Text(
-                                    walletData.address.toString(),
-                                    style: TextStyle(
-                                      color: ArborColors.white70,
-                                    ),
+                                  walletData.address.toString(),
+                                  style: TextStyle(
+                                    color: ArborColors.white70,
+                                  ),
                                 ),
                               ),
                               ListTile(
@@ -239,27 +241,27 @@ class _InfoScreenState extends State<InfoScreen> {
                                     Expanded(
                                         child: ArborButton(
 
-                                            onPressed: () {
-                                              _showReceiveView(walletIndex: index);
-                                            },
-                                            title: 'Receive',
-                                            backgroundColor: ArborColors.deepGreen,
+                                          onPressed: () {
+                                            _showReceiveView(walletIndex: index);
+                                          },
+                                          title: 'Receive',
+                                          backgroundColor: ArborColors.deepGreen,
                                         )
                                     ),
                                     SizedBox(width: 10),
                                     Expanded(
-                                        child: ArborButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) => ValueScreen(wallet: walletData,),
-                                                ),
-                                              );
-                                            },
-                                            title: 'Send',
-                                            backgroundColor: ArborColors.deepGreen,
-                                        ),
+                                      child: ArborButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => ValueScreen(wallet: walletData,),
+                                            ),
+                                          );
+                                        },
+                                        title: 'Send',
+                                        backgroundColor: ArborColors.deepGreen,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -306,9 +308,6 @@ class _InfoScreenState extends State<InfoScreen> {
     );
     if(result==true){
       walletBox.deleteAt(index);
-      print('Item deleted from box at index: $index');
-    }else{
-      print('Item');
     }
 
   }

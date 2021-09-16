@@ -25,20 +25,19 @@ class OnBoardingScreen extends StatelessWidget {
       pages: onBoardingTextList
           .map(
             (e) => PageViewModel(
-              titleWidget: Container(
-                padding: const EdgeInsets.all(20),
-                height: 0.55.sh,
-                child: Center(
-                  child: SvgPicture.asset(
-                    e.assetPath,
-                    height: 0.5.sh,
-                    //height: MediaQuery.of(context).size.height * 0.5,
+              titleWidget:Container(
+                margin: EdgeInsets.only(top: 120.h),
+                    padding: EdgeInsets.only(left: 20.w,right: 20.w,),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        e.assetPath,
+                        height: 0.3.sh,
+                        //height: MediaQuery.of(context).size.height * 0.5,
+                      ),
+                    ),
                   ),
-                ),
-              ),
               bodyWidget: _OnBoardingTextWidget(
                 onBoardingText: e,
-                onNextPressed: () {},
               ),
             ),
           )
@@ -60,20 +59,20 @@ class OnBoardingScreen extends StatelessWidget {
       showDoneButton: true,
       skipFlex: 0,
       nextFlex: 0,
-      skip: const Text(
+      skip: Text(
         'SKIP',
         style: TextStyle(
           fontWeight: FontWeight.w600,
           color: Colors.white,
-          fontSize: 18,
+          fontSize: 18.sp,
         ),
       ),
-      next: const Text(
+      next: Text(
         'NEXT',
         style: TextStyle(
           fontWeight: FontWeight.w600,
           color: Colors.white,
-          fontSize: 18,
+          fontSize: 18.sp,
         ),
       ),
       done: const Text('SKIP',
@@ -108,15 +107,14 @@ class OnBoardingScreen extends StatelessWidget {
 
 class _OnBoardingTextWidget extends StatelessWidget {
   final OnBoardingText onBoardingText;
-  final VoidCallback onNextPressed;
 
   _OnBoardingTextWidget(
-      {required this.onBoardingText, required this.onNextPressed});
+      {required this.onBoardingText,});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -125,14 +123,14 @@ class _OnBoardingTextWidget extends StatelessWidget {
           Text(
             '${onBoardingText.title}',
             textAlign: TextAlign.center,
-            style:  TextStyle(
+            style: TextStyle(
               fontSize: 24.sp,
               color: Colors.white,
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
           Text(
             '${onBoardingText.description}',
@@ -144,9 +142,7 @@ class _OnBoardingTextWidget extends StatelessWidget {
             ),
             softWrap: true,
           ),
-          const SizedBox(
-            height: 30,
-          ),
+
         ],
       ),
     );

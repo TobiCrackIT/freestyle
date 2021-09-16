@@ -61,8 +61,7 @@ class _ExpandedInfoPageState extends State<ExpandedInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Expanded(
-        child: ValueListenableBuilder(
+       ValueListenableBuilder(
           valueListenable: walletBox.listenable(),
           builder: (context, Box box, widget) {
             if (box.isEmpty) {
@@ -199,7 +198,7 @@ class _ExpandedInfoPageState extends State<ExpandedInfoPage> {
             }
           },
         ),
-      ),
+      SizedBox(height: 40,),
       ArborButton(
           // style: ElevatedButton.styleFrom(
           //   minimumSize: Size(double.infinity,

@@ -113,7 +113,6 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => SendCryptoProvider()),
       ],
       child: ScreenUtilInit(
-        designSize: Size(1080, 2340),
         builder:()=> MaterialApp(
           title: 'Arbor',
           theme:ArborThemeData.lightTheme,

@@ -361,6 +361,7 @@ class ArborOnBoardingLayoutState extends State<ArborOnBoardingLayout> {
                         flex: 2,
                         child: SizedBox(width: 10,),
                       ),
+                      //Expanded(flex: 2,child: _toggleBtn(nextBtn, widget.showNextButton),),
                       Expanded(
                         flex: widget.dotsFlex,
                         child: Center(
